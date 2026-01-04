@@ -4,9 +4,16 @@ import { protectRoute } from "../middleware/protectRoute.js";
 
 const router = express.Router();
 
+// Route to get the logged-in user's information
 router.get("/me", protectRoute, getMe);
-router.post("/signup", signup);
+
+// Route for user signup
+router.post("/signup", signup); // No changes needed
+
+// Route for user login
 router.post("/login", login);
-router.post("/logout", logout);
+
+// Route for user logout
+router.post("/logout", protectRoute, logout); // It's good practice to protect the logout route
 
 export default router;

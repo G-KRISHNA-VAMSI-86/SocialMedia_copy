@@ -21,6 +21,25 @@ const userSchema = new mongoose.Schema(
 			required: true,
 			unique: true,
 		},
+		mobile:{
+			type: String,
+			required: true,
+			unique: true,
+			validate: {
+			validator: function (v) {
+			return /^\d{10}$/.test(v); // require exactly 10 digits; adjust if you want international formats
+				},
+			message: (props) => `${props.value} is not a valid mobile number`,
+			},
+		},
+		dob:{
+			type: String,
+			required: true,
+		},
+		gender:{
+			type: String,
+			required: true,
+		},
 		followers: [
 			{
 				type: mongoose.Schema.Types.ObjectId,
